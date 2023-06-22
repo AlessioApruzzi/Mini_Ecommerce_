@@ -1,7 +1,7 @@
 package org.tree.javacourse.dao;
 
 import org.tree.javacourse.connection_handler.ConnectionHandler;
-import org.tree.javacourse.model.Product;
+import org.tree.javacourse.model.Products;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,15 +13,15 @@ import java.util.Optional;
 public class ProductDaoSql extends ProductDaoImpl{
 
 
-    public boolean insert(Product product) throws SQLException {
+    public boolean insert(Products products) throws SQLException {
         String query = "INSERT INTO miniecommerce.product (name,description,aveilableNumber,price) VALUES (?,?,?,?);";
 
         try (ConnectionHandler ch = ConnectionHandler.getInstance();
              PreparedStatement ps = ch.getPreparedStatement(query)) {
-            ps.setString(1, product.getName());
-            ps.setString(2, product.getDescription());
-            ps.setInt(3, product.getAveilableNumber());
-            ps.setDouble(4, product.getPrice());
+            ps.setString(1, products.getName());
+            ps.setString(2, products.getDescription());
+            ps.setInt(3, products.getQuantity());
+            ps.setDouble(4, products.getPrice());
             int insertedCount = ps.executeUpdate();
 
             return insertedCount > 0;
@@ -29,16 +29,16 @@ public class ProductDaoSql extends ProductDaoImpl{
     }
 
 
-    public boolean update(Product product) throws SQLException {
+    public boolean update(Products products) throws SQLException {
         String query = "UPDATE miniecommerce.product SET name = ?, description= ?, aveilableNumner=?,price=? WHERE id = ?;";
 
         try (ConnectionHandler ch = ConnectionHandler.getInstance();
              PreparedStatement ps = ch.getPreparedStatement(query)) {
-            ps.setString(1, product.getName());
-            ps.setString(2, product.getDescription());
-            ps.setInt(3, product.getAveilableNumber());
-            ps.setDouble(4, product.getPrice());
-            ps.setInt(5, product.getId());
+            ps.setString(1, products.getName());
+            ps.setString(2, products.getDescription());
+            ps.setInt(3, products.getQuantity());
+            ps.setDouble(4, products.getPrice());
+            ps.setInt(5, products.getId());
             int updatedCount = ps.executeUpdate();
             return updatedCount > 0;
 
@@ -57,16 +57,16 @@ public class ProductDaoSql extends ProductDaoImpl{
         }
     }
 
-    public Optional<Product> get(int id) throws SQLException {
+    public Optional<Products> get(int id) throws SQLException {
         String query = "SELECT * FROM miniecommerce.product WHERE id = ?;";
 
-        Optional<Product> posto = Optional.empty();
+        Optional<Products> posto = Optional.empty();
 
         try (ConnectionHandler ch = ConnectionHandler.getInstance();
              PreparedStatement ps = ch.getPreparedStatement(query)) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) posto = Optional.of(Product.fromResultSet(rs));
+            if (rs.next()) posto = Optional.of(Products.fromResultSet(rs));
 
         }
 
@@ -74,15 +74,15 @@ public class ProductDaoSql extends ProductDaoImpl{
     }
 
 
-    public List<Product> getAll() throws SQLException {
+    public List<Products> getAll() throws SQLException {
         String query = "SELECT * FROM miniecommerce.product;";
 
-        List<Product> products = new ArrayList<>();
+        List<Products> products = new ArrayList<>();
 
         try (ConnectionHandler ch = ConnectionHandler.getInstance();
              PreparedStatement ps = ch.getPreparedStatement(query);
              ResultSet rs = ps.executeQuery()) {
-            while (rs.next()) products.add(Product.fromResultSet(rs));
+            while (rs.next()) products.add(Products.fromResultSet(rs));
         }
 
         return products;

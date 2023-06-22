@@ -1,6 +1,6 @@
 package org.tree.javacourse.dao;
 
-import org.tree.javacourse.model.Product;
+import org.tree.javacourse.model.Products;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -8,12 +8,12 @@ import java.util.Optional;
 
 public class ProductDaoImpl implements Dao{
 
-    public boolean insert(Product u) throws SQLException {
+    public boolean insert(Products u) throws SQLException {
         return false;
     }
 
 
-    public boolean update(Product u) throws SQLException {
+    public boolean update(Products u) throws SQLException {
         return false;
     }
 
@@ -23,12 +23,12 @@ public class ProductDaoImpl implements Dao{
     }
 
 
-    public Optional<Product> get(int id) throws SQLException {
+    public Optional<Products> get(int id) throws SQLException {
         return Optional.empty();
     }
 
 
-    public List<Product> getAll() throws SQLException {
+    public List<Products> getAll() throws SQLException {
         return null;
     }
 }

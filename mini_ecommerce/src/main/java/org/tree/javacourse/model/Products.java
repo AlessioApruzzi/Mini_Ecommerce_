@@ -11,19 +11,19 @@ import java.sql.SQLException;
 @AllArgsConstructor
 @Getter
 @Setter@ToString
-public class Product {
+public class Products {
 
     private int id;
     private String name;
     private String description;
-    private int aveilableNumber;
+    private int quantity;
     private double price;
 
-    public static Product fromResultSet(ResultSet rs) throws SQLException {
-        return new Product(rs.getInt("id"),
+    public static Products fromResultSet(ResultSet rs) throws SQLException {
+        return new Products(rs.getInt("id"),
                 rs.getString("name"),
                 rs.getString("description"),
-                rs.getInt("aveilableQuantity"),
+                rs.getInt("quantity"),
                 rs.getDouble("price"));
     }
 

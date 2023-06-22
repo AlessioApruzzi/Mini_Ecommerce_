@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-import org.tree.javacourse.model.Product;
+import org.tree.javacourse.model.Products;
 
 public interface Dao {
-    boolean insert(Product u) throws SQLException;
+    boolean insert(Products u) throws SQLException;
 
-    boolean update(Product u) throws SQLException;
+    boolean update(Products u) throws SQLException;
 
     boolean delete(int id) throws SQLException;
 
-    Optional<Product> get(int id) throws SQLException;
+    Optional<Products> get(int id) throws SQLException;
 
-    List<Product> getAll() throws SQLException;
+    List<Products> getAll() throws SQLException;
 }

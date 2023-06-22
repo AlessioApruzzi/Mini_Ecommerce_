@@ -2,7 +2,7 @@ package org.tree.javacourse.service;
 
 import org.tree.javacourse.dao.Dao;
 import org.tree.javacourse.dao.ProductDaoImpl;
-import org.tree.javacourse.model.Product;
+import org.tree.javacourse.model.Products;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -16,11 +16,11 @@ public class ProductService {
         daoProduct = new ProductDaoImpl();
     }
 
-    public boolean insert(Product u) throws SQLException {
+    public boolean insert(Products u) throws SQLException {
         return daoProduct.insert(u);
     }
 
-    public boolean update(Product u) throws SQLException {
+    public boolean update(Products u) throws SQLException {
         return daoProduct.update(u);
     }
 
@@ -29,11 +29,11 @@ public class ProductService {
     }
 
 
-    public Optional<Product> get(int id) throws SQLException {
+    public Optional<Products> get(int id) throws SQLException {
         return daoProduct.get(id);
     }
 
-    public List<Product> getAll() throws SQLException {
+    public List<Products> getAll() throws SQLException {
         return daoProduct.getAll();
     }
 }
