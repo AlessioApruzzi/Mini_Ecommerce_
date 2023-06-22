@@ -1,7 +1,5 @@
 package org.tree.javacourse.dao;
 
-import connection_handler.ConnectionHandler;
-import model.Posto;
 import org.tree.javacourse.connection_handler.ConnectionHandler;
 import org.tree.javacourse.model.Product;
 
