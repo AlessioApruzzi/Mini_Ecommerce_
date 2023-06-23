@@ -17,7 +17,7 @@ public class ProductController {
         //heartbit
         get("/", (req, res) -> "System is working!");
 
-        get("/user/all", (req, res) -> {
+        get("/product/all", (req, res) -> {
             res.type("application/json");
 
             HttpResponse response = new HttpResponse("200",
@@ -26,17 +26,18 @@ public class ProductController {
             return new Gson().toJson(response);
         });
 
-        post("/user", (req, res) -> {
+        post("/product/create", (req, res) -> {
             res.type("application/json");
 
             Products productsFromPostRequest = new Gson().fromJson(req.body(), Products.class);
+
             productService.insert(productsFromPostRequest);
 
             return new Gson().toJson(new HttpResponse("200"));
 
         });
 
-        put("/user", (req, res) -> {
+        put("/product/update", (req, res) -> {
             res.type("application/json");
 
             Products productsFromPostRequest = new Gson().fromJson(req.body(), Products.class);
@@ -46,7 +47,7 @@ public class ProductController {
 
         });
 
-        delete("/user/:id", (req, res) -> {
+        delete("/product/delete/:id", (req, res) -> {
             res.type("application/json");
 
             String paramID = req.params("id");

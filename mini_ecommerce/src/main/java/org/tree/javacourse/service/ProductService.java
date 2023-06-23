@@ -2,6 +2,7 @@ package org.tree.javacourse.service;
 
 import org.tree.javacourse.dao.Dao;
 import org.tree.javacourse.dao.ProductDaoImpl;
+import org.tree.javacourse.dao.ProductDaoSql;
 import org.tree.javacourse.model.Products;
 
 import java.sql.SQLException;
@@ -10,10 +11,10 @@ import java.util.Optional;
 
 public class ProductService {
 
-    Dao daoProduct;
+    ProductDaoSql daoProduct;
 
     public ProductService(){
-        daoProduct = new ProductDaoImpl();
+        daoProduct = new ProductDaoSql();
     }
 
     public boolean insert(Products u) throws SQLException {

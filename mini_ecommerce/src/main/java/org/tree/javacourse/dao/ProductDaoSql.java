@@ -14,7 +14,7 @@ public class ProductDaoSql extends ProductDaoImpl{
 
 
     public boolean insert(Products products) throws SQLException {
-        String query = "INSERT INTO miniecommerce.product (name,description,aveilableNumber,price) VALUES (?,?,?,?);";
+        String query = "INSERT INTO product (name,description,quantity,price) VALUES (?,?,?,?);";
 
         try (ConnectionHandler ch = ConnectionHandler.getInstance();
              PreparedStatement ps = ch.getPreparedStatement(query)) {
@@ -30,7 +30,7 @@ public class ProductDaoSql extends ProductDaoImpl{
 
 
     public boolean update(Products products) throws SQLException {
-        String query = "UPDATE miniecommerce.product SET name = ?, description= ?, aveilableNumner=?,price=? WHERE id = ?;";
+        String query = "UPDATE product SET name = ?, description= ?, quantity=?,price=? WHERE id = ?;";
 
         try (ConnectionHandler ch = ConnectionHandler.getInstance();
              PreparedStatement ps = ch.getPreparedStatement(query)) {
@@ -46,7 +46,7 @@ public class ProductDaoSql extends ProductDaoImpl{
     }
 
     public boolean delete(int id) throws SQLException {
-        String query = "DELETE FROM teatro.posto WHERE id = ?;";
+        String query = "DELETE FROM product WHERE id = ?;";
 
         try (ConnectionHandler ch = ConnectionHandler.getInstance();
              PreparedStatement ps = ch.getPreparedStatement(query)) {
@@ -58,7 +58,7 @@ public class ProductDaoSql extends ProductDaoImpl{
     }
 
     public Optional<Products> get(int id) throws SQLException {
-        String query = "SELECT * FROM miniecommerce.product WHERE id = ?;";
+        String query = "SELECT * FROM product WHERE id = ?;";
 
         Optional<Products> posto = Optional.empty();
 
@@ -75,7 +75,7 @@ public class ProductDaoSql extends ProductDaoImpl{
 
 
     public List<Products> getAll() throws SQLException {
-        String query = "SELECT * FROM miniecommerce.product;";
+        String query = "SELECT * FROM product";
 
         List<Products> products = new ArrayList<>();
 
@@ -89,14 +89,4 @@ public class ProductDaoSql extends ProductDaoImpl{
     }
 
 
-    public int getPostoByFilaENumero(int fila, int numero) throws SQLException {
-        String query = "SELECT * FROM teatro.posto WHERE posto.fila = '" + fila + "'"+ " And posto.numero = '" + numero + "'";
-        try (ConnectionHandler ch = ConnectionHandler.getInstance();
-             PreparedStatement ps = ch.getPreparedStatement(query);
-             ResultSet rs = ps.executeQuery())
-        {
-            rs.next();
-            return rs.getInt("id_posto");
-        }
-    }
 }

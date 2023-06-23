@@ -15,7 +15,7 @@ public class ConnectionHandler implements AutoCloseable {
 
     public static final String DB_URL_PREFIX = "jdbc:postgresql://";
 
-    public static final Path propsPath = Paths.get("mini_ecommerce","src","main", "java", "org.tree.javacourse", "configuration","config.properties");
+    public static final Path propsPath = Paths.get("mini_ecommerce","src","main", "java", "org","tree","javacourse", "configuration","config.properties");
 
     private static ConnectionHandler connectionHandlerInstance;
 
