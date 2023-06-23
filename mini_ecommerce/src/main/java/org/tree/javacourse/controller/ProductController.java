@@ -5,10 +5,7 @@ import org.tree.javacourse.controller.response.HttpResponse;
 import org.tree.javacourse.model.Products;
 import org.tree.javacourse.service.ProductService;
 
-import static spark.Spark.get;
-import static spark.Spark.post;
-import static spark.Spark.delete;
-import static spark.Spark.put;
+import static spark.Spark.*;
 
 public class ProductController {
 
@@ -55,5 +52,16 @@ public class ProductController {
 
             return new Gson().toJson(new HttpResponse("200"));
         });
+
+
+        put("/product/buy",(req, res) -> {
+            res.type("application/json");
+            Products productsFromPostRequest = new Gson().fromJson(req.body(), Products.class);
+
+            double totalPrice = productService.buyProduct(productsFromPostRequest.getId(),productsFromPostRequest.getQuantity());
+            return new Gson().toJson(new HttpResponse("200",
+                    new Gson().toJsonTree(totalPrice)));
+        });
+
     }
 }

@@ -37,4 +37,22 @@ public class ProductService {
     public List<Products> getAll() throws SQLException {
         return daoProduct.getAll();
     }
+
+
+
+    public double buyProduct(int idProduct,int quantity) throws SQLException {
+        Products productToBuy = daoProduct.getProductById(idProduct);
+        int number;
+        if (productToBuy.getQuantity()<quantity){
+            System.out.println("You bought only " + productToBuy.getQuantity());
+            number= productToBuy.getQuantity();
+            productToBuy.setQuantity(0);
+
+        } else {
+            productToBuy.setQuantity(productToBuy.getQuantity()-quantity);
+            number=quantity;
+        }
+        daoProduct.update(productToBuy);
+        return productToBuy.getPrice()*number;
+    }
 }

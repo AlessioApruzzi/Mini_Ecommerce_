@@ -88,5 +88,18 @@ public class ProductDaoSql extends ProductDaoImpl{
         return products;
     }
 
+    public Products getProductById(int id) throws SQLException {
+        String query = "SELECT * FROM product WHERE id="+id;
+
+        try (ConnectionHandler ch = ConnectionHandler.getInstance();
+             PreparedStatement ps = ch.getPreparedStatement(query);
+             ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                return Products.fromResultSet(rs);
+            }
+        }
+        return null;
+    }
+
 
 }
