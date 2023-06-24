@@ -1,7 +1,6 @@
 package org.tree.javacourse.service;
 
-import org.tree.javacourse.dao.Dao;
-import org.tree.javacourse.dao.ProductDaoImpl;
+import org.tree.javacourse.connection_handler.ConnectionHandler;
 import org.tree.javacourse.dao.ProductDaoSql;
 import org.tree.javacourse.model.Products;
 
@@ -11,10 +10,19 @@ import java.util.Optional;
 
 public class ProductService {
 
-    ProductDaoSql daoProduct;
+    private ProductDaoSql daoProduct;
 
-    public ProductService(){
+    private static ProductService productServiceInstance;
+
+    private ProductService(){
         daoProduct = new ProductDaoSql();
+    }
+
+    public static ProductService getInstance() {
+        if (productServiceInstance == null)
+            productServiceInstance = new ProductService();
+
+        return productServiceInstance;
     }
 
     public boolean insert(Products u) throws SQLException {

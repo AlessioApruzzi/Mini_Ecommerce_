@@ -12,9 +12,7 @@ public class App
     public static void main( String[] args )
     {
 
-        System.out.println( "Hello World!" );
-        //TODO: Implementare come Singleton
-        ProductService productService = new ProductService();
+        ProductService productService = ProductService.getInstance();
 
         ProductController productController = new ProductController();
         productController.startServices(productService);

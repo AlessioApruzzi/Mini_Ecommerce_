@@ -14,6 +14,7 @@ public class ProductController {
         //heartbit
         get("/", (req, res) -> "System is working!");
 
+        //GET ALL PRODUCTS
         get("/product/all", (req, res) -> {
             res.type("application/json");
 
@@ -23,6 +24,7 @@ public class ProductController {
             return new Gson().toJson(response);
         });
 
+        //ADD A PRODUCT
         post("/product/create", (req, res) -> {
             res.type("application/json");
 
@@ -34,6 +36,7 @@ public class ProductController {
 
         });
 
+        //UPDATE A PRODUCT
         put("/product/update", (req, res) -> {
             res.type("application/json");
 
@@ -44,6 +47,7 @@ public class ProductController {
 
         });
 
+        //DELETE A PRODUCT
         delete("/product/delete/:id", (req, res) -> {
             res.type("application/json");
 
@@ -53,7 +57,7 @@ public class ProductController {
             return new Gson().toJson(new HttpResponse("200"));
         });
 
-
+        //BUY A PRODUCT
         put("/product/buy",(req, res) -> {
             res.type("application/json");
             Products productsFromPostRequest = new Gson().fromJson(req.body(), Products.class);

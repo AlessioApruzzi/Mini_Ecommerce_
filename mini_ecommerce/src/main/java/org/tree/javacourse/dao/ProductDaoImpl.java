@@ -12,21 +12,17 @@ public class ProductDaoImpl implements Dao{
         return false;
     }
 
-
     public boolean update(Products u) throws SQLException {
         return false;
     }
-
 
     public boolean delete(int id) throws SQLException {
         return false;
     }
 
-
     public Optional<Products> get(int id) throws SQLException {
         return Optional.empty();
     }
-
 
     public List<Products> getAll() throws SQLException {
         return null;
